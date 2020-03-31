@@ -1,7 +1,9 @@
 ﻿// Copyright (c) Brock Allen & Dominick Baier. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
-
+using LQIDS.Models;
+using LQIDS.Data;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,11 +29,22 @@ namespace LQIDS
 
         public void ConfigureServices(IServiceCollection services)
         {
-            // uncomment, if you want to add an MVC-based UI
-            services.AddControllersWithViews();
             var connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             var migrationsAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
+
+            // uncomment, if you want to add an MVC-based UI
+            services.AddControllersWithViews();
+            services.AddDbContext<IdentityDbContext>(options =>
+                options.UseSqlServer(connectionString,sql => sql.MigrationsAssembly(migrationsAssembly))
+            );
+            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+                {
+                    options.SignIn.RequireConfirmedEmail = true;
+                }
+            )
+                .AddEntityFrameworkStores<IdentityDbContext>()
+                .AddDefaultTokenProviders();
 
             var builder = services.AddIdentityServer(options =>
                 {
