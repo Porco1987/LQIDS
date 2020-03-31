@@ -99,3 +99,4 @@ C:\Users\qlin5\Documents\Dotnet Projects\LQIDS\src\LQIDS\bin\Debug\netcoreapp3.1
 C:\Users\qlin5\Documents\Dotnet Projects\LQIDS\src\LQIDS\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\qlin5\Documents\Dotnet Projects\LQIDS\src\LQIDS\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\qlin5\Documents\Dotnet Projects\LQIDS\src\LQIDS\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\qlin5\Documents\Dotnet Projects\LQIDS\src\LQIDS\bin\Debug\netcoreapp3.1\IdentityServer4.AspNetIdentity.dll
