@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace LQIDS.Data.Migrations.Configuration
+namespace LQIDS.Data.Migrations.LQIDS.ConfigurationDb
 {
     public partial class InitialConfigurationDbMigration : Migration
     {

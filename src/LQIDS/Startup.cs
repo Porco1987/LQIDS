@@ -38,6 +38,9 @@ namespace LQIDS
             services.AddDbContext<IdentityDbContext>(options =>
                 options.UseSqlServer(connectionString,sql => sql.MigrationsAssembly(migrationsAssembly))
             );
+            services.AddDbContext<ConfigurationDbContext>(options => 
+                options.UseSqlServer(connectionString, sql => sql.MigrationsAssembly(migrationsAssembly))
+            );
             services.AddIdentity<ApplicationUser, IdentityRole>(options =>
                 {
                     options.SignIn.RequireConfirmedEmail = true;
@@ -69,7 +72,8 @@ namespace LQIDS
                     options.ConfigureDbContext = b => b.UseSqlServer(connectionString, sql => sql.MigrationsAssembly(migrationsAssembly));
                     options.EnableTokenCleanup = true;
                 }
-                );
+                )
+                .AddAspNetIdentity<ApplicationUser>();;
 
             // not recommended for production - you need to store your key material somewhere secure
             builder.AddDeveloperSigningCredential();
