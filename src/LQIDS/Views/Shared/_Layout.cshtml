@@ -52,7 +52,27 @@
 
     <div class="container body-content">
         @RenderBody()
+
+          @if (string.IsNullOrWhiteSpace(name))
+        {
+            <div class="row">
+                    <div class="col-sm-8">
+                        <p> No User </p>
+                    </div>
+            </div>
+        }
+        @if (!string.IsNullOrWhiteSpace(name))
+        {
+            <div class="row">
+                <div class="col-sm-8">
+                <p> @name </p>
+                </div>
+            </div>
+        }
+        
     </div>
+
+   
 
     <script src="~/lib/jquery/jquery.js"></script>
     <script src="~/lib/bootstrap/js/bootstrap.js"></script>

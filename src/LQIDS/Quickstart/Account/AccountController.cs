@@ -85,6 +85,7 @@ namespace LQIDS
             // the user clicked the "cancel" button
             if (button != "login")
             {
+                
                 if (context != null)
                 {
                     // if the user cancels, send a result back into IdentityServer as if they 
@@ -98,21 +99,23 @@ namespace LQIDS
                         // if the client is PKCE then we assume it's native, so this change in how to
                         // return the response is for better UX for the end user.
                         return View("Redirect", new RedirectViewModel { RedirectUrl = model.ReturnUrl });
+                        //return Redirect("www.baidu.com");
                     }
 
                     return Redirect(model.ReturnUrl);
+                    //return Redirect("www.bing.com");
                 }
                 else
                 {
                     // since we don't have a valid context, then we just go back to the home page
                     return Redirect("~/");
+                    //return Redirect("www.google.com");
                 }
             }
 
             if (ModelState.IsValid)
             {
                 var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, model.RememberLogin, lockoutOnFailure : true);
-                
                 if (result.Succeeded)
                 {
                     var user = await _userManager.FindByNameAsync(model.Username);
@@ -139,6 +142,7 @@ namespace LQIDS
                     else if (string.IsNullOrEmpty(model.ReturnUrl))
                     {
                         return Redirect("~/");
+                        //return Redirect("www.baidu.com");到达这里
                     }
                     else
                     {

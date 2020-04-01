@@ -30,15 +30,15 @@ namespace LQIDS
         public void ConfigureServices(IServiceCollection services)
         {
             var connectionString = Configuration.GetConnectionString("DefaultConnection");
-
             var migrationsAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
 
             // uncomment, if you want to add an MVC-based UI
             services.AddControllersWithViews();
+
             services.AddDbContext<IdentityDbContext>(options =>
                 options.UseSqlServer(connectionString,sql => sql.MigrationsAssembly(migrationsAssembly))
             );
-            services.AddDbContext<ConfigurationDbContext>(options => 
+            services.AddDbContext<Data.ConfigurationDbContext>(options => 
                 options.UseSqlServer(connectionString, sql => sql.MigrationsAssembly(migrationsAssembly))
             );
             services.AddIdentity<ApplicationUser, IdentityRole>(options =>
@@ -76,8 +76,8 @@ namespace LQIDS
                 .AddAspNetIdentity<ApplicationUser>();;
 
             // not recommended for production - you need to store your key material somewhere secure
-            builder.AddDeveloperSigningCredential();
-        }
+                builder.AddDeveloperSigningCredential();
+            }
 
         public void Configure(IApplicationBuilder app)
         {
